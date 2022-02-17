@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 
 const departmentRoutes = require('./department-routes');
 const roleRoutes = require('./role-routes');
