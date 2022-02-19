@@ -6,6 +6,10 @@ let Depts = [];
 let Roles = [];
 let DMgrs = [];
 let DMgrsArr = [];
+let EmpArr = [];
+let EmpArr2 = [];
+let EmpArr4 = [];
+let EmpArr5 = [];
 
 const builddept = () => {
     db.query(`Select name from department`, (err, res) => {
@@ -87,6 +91,24 @@ const newEmployee = [
     }
 ];
 
+const updateEmployee = [
+    {
+        type: `list`,
+        name: `employee`,
+        message: `Which employee's title would you like to update?`,
+        choices: EmpArr
+    }
+];
+
+const updateEmpRole = [
+    {
+        type: `list`,
+        name: `title`,
+        message: `Which role would you like to assign to the employee?`,
+        choices: EmpArr4
+    }
+];
+
 
 
 const init = () => {
@@ -110,9 +132,9 @@ const init = () => {
             else if (data.menu === `Add an employee`) {
                 postEmployee();
             }
-            // else if (data.menu === `Update an employee role`) {
-            //     putEmployee();
-            // }
+            else if (data.menu === `Update an employee role`) {
+                putEmployee();
+            }
             else if (data.menu === `Exit Application`) { return }
             else return;
         })
@@ -263,6 +285,49 @@ const postEmployee = () => {
         })
 }
 
+const putEmployee = () => {
+    const sqlP1 = `select id, role_id, concat (first_name,' ',last_name) as Employee_Name from employee order by first_name asc`;
+    db.query(sqlP1, (err, res) => {
+        if (err) throw err
+        else {
+            res.map(function (i) { EmpArr.push(i.Employee_Name) })
+            EmpArr2.push(res)
+            // console.log(EmpArr2)
+            inquirer.prompt(updateEmployee)
+                .then((data) => {
+                    let Emp_Name = data.employee
+                    let EmpArr3 = EmpArr2.flat(1).filter(function (el) { return el.Employee_Name === Emp_Name })
+                    let [EmpId3] = EmpArr3.map(function (i) { return JSON.stringify(i.id) })
+                    let sqlEmp3 = `SELECT role.id, role.title from role where role.department_id IN (SELECT role.department_id from role where role.id IN (select employee.role_id from employee where employee.id = ${EmpId3}))`
+                    db.query(sqlEmp3, (err, res) => {
+                        if (err) throw err
+                        else {
+                            res.map(function (i) { EmpArr4.push(i.title) })
+                            EmpArr5.push(res)
+                            // console.log(EmpArr5)
+                            inquirer.prompt(updateEmpRole)
+                                .then((data) => {
+                                    let RoleName = data.title;
+                                    let EmpArr6 = EmpArr5.flat(1).filter(function (el) { return el.title === data.title})
+                                    let [EmpRole4] = EmpArr6.map(function (i) { return JSON.stringify(i.id) })
+                                    // console.log('Role_Id :',EmpRole4)
+                                    // console.log('Emp_Id :',EmpId3)
+                                    let sqlEmp4 = `UPDATE employee set employee.role_id = ${EmpRole4} where employee.id = ${EmpId3}`
+                                    db.query(sqlEmp4, (err, res) => {
+                                        if (err) throw err
+                                        else {  console.log(`
+    **** Employee ${Emp_Name}'s role was successfully set to ${RoleName}****
+                                                                                `);
+                                        init();
+                                        }
+                                    })
+                                })
+                        }
+                    })
+                })
+        }
+    })
+}
 
 
 
