@@ -2,10 +2,9 @@
   "name": "emp-tracker",
   "version": "1.0.0",
   "description": "Employee Tracker is an intuitive app that allows you to view and manage departments, roles, and employees within your company, simplifying business planning and organization task.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,9 +18,7 @@
   "homepage": "https://github.com/bkfleet1/emp-tracker#readme",
   "dependencies": {
     "console.table": "^0.10.0",
-    "express": "^4.17.3",
     "inquirer": "^8.2.0",
     "mysql2": "^2.3.3"
-  },
-  "keywords": []
+  }
 }
