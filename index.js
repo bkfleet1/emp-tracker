@@ -1,7 +1,7 @@
 const inquirer = require(`inquirer`); // questions resource (npm i inquirer)
 const cTable = require('console.table');
-const db = require('./db/connection');
-const { response } = require('express');
+const db = require('./db/connection'); // mysql2
+// const { response } = require('express');
 let Depts = [];
 let Roles = [];
 let DMgrs = [];
@@ -144,8 +144,8 @@ const init = () => {
 };
 
 const getDepartments = () => {
-    const sql = `select * from department order by name asc`;
-    db.query(sql, (err, res) => {
+    const sql4 = `select * from department order by name asc`;
+    db.query(sql4, (err, res) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
@@ -310,8 +310,6 @@ const putEmployee = () => {
                                     let RoleName = data.title;
                                     let EmpArr6 = EmpArr5.flat(1).filter(function (el) { return el.title === data.title})
                                     let [EmpRole4] = EmpArr6.map(function (i) { return JSON.stringify(i.id) })
-                                    // console.log('Role_Id :',EmpRole4)
-                                    // console.log('Emp_Id :',EmpId3)
                                     let sqlEmp4 = `UPDATE employee set employee.role_id = ${EmpRole4} where employee.id = ${EmpId3}`
                                     db.query(sqlEmp4, (err, res) => {
                                         if (err) throw err

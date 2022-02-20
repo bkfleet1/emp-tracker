@@ -1,141 +1,93 @@
-# emp-tracker
+# [Employee Tracker](#title)
+
+## [Description](#description)
 Employee Tracker is an intuitive app that allows you to view and manage departments, roles, and employees within your company, simplifying business planning and organization task.
 
-## Acceptance Criteria
-Given a command-line application that accepts user input
+![Employee Tracker Repo Size](https://img.shields.io/github/repo-size/bkfleet1/emp-tracker?style=plastic)
+>> - Project Repository URL: https://github.com/bkfleet1/emp-tracker
+![Employee Tracker repository](./assets/images/repository.png)
 
->> - When I start the application, then I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
+>> - Walkthrough Video: https://watch.screencastify.com/v/GbEjblAJgbtTLYtwQFI0
 
->> - When I choose to view all departments, then I am presented with a formatted table showing department names and department ids
+## Table of Contents
+> * [Title](#title)
+> * [Description](#description)
+> * [Developer](#developer)
+> * [Resources](#resources)
+> * [Installation](#installation) 
+> * [Use Instructions](#usage)
+> * [Tests](#tests)
+> * [Questions](#questions)
 
->> - When I choose to view all roles, then I am presented with the job title, role id, the department that role belongs to, and the salary for that role
+## [Developer](#developer)
+[Brad Kelley](mailto:bradkelleytech@gmail.com)
 
->> - When I choose to view all employees, then I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+## [Resources](#resources)
+![100% Javascript](https://img.shields.io/badge/javascript-100%25-green)
 
->> - When I choose to add a department, then I am prompted to enter the name of the department and that department is added to the database
+The following resources were used in the development of this project.
+> * MYSQL
+> * Javascript
+> * Node.js
+> * NPM
+> * Inquirer
+> * Mysql2
+> * Console.Table
 
->> - When I choose to add a role, then I am prompted to enter the name, salary, and department for the role and that role is added to the database
+## [Installation](#installation)
+The following steps are required to execute the Employee Tracker code.
 
->> - When I choose to add an employee, then I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
+> 1. Clone the repository located at: https://github.com/bkfleet1/emp-tracker.
+> 2. The application utilizes MYSQL a database. SQL queries have been provided to create the database (db.sql) and table schema (schema.sql), which you will find in the application's **db/** directory. The following steps can be followed to create the database;
+>>> 1. Open a terminal application, such as git bash, and type "**mysql -u root -p**". Type in the password of your MYSQL root user;
+>>> 2. Type "**source db/db.sql;**" and press enter to create the application's database;
+>>> 3. Type "**source db/schema.sql;**" and press enter to create the application's database tables; and
+>>> 3. Type "**quit;**" and press enter to exit MSQL.
+>>> NOTE: If you do not have MYSQL, you can download it at https://www.mysql.com/downloads/.
+> 3. Next you will need to open the **connection.js** file located in the application's **db/** directory and enter **user** and **password** credentials to connect to the **emp_tracker** database you created in Step 2.
+> 4. Install Node.js. You can download the latest version of Node.js at https://nodejs.org/en/ ;
+> 5. Open the project in a terminal application, such as git bash, and install NPM. To install npm, simply type "**npm install**" and press enter. Don't close your terminal application, we have a couple more items to install;
+> 6. Next install Inquirer, which is a package that enables the question prompts used to populate your readme.md file that will be generated. To install Inquirer simply type "**npm install inquirer**" and press enter;
+> 7. Next install MYSQL2, which is a package that enables communication with your MYSQL database. To install MYSQL2 simply type "**npm install mysql2**" and press enter;
+> 8. Finally you will need to install console.table, which visualizes data in tables. You can install this package by typing "**npm install console.table**" and press enter.
 
->> - When I choose to update an employee role, then I am prompted to select an employee to update and their new role and this information is updated in the database
+**NOTE: If you are familiar with SQL quieries, you can modify the db/db.seeds.sql file to pre-populate the application's databse with your company's data.**
 
+## [Use Instructions](#usage)
+After the installation process, you are ready to run the application. Just open the project in a terminal application, such as git bash, and type "**node index**" and press enter. The application will present you with a feature menu that allows you to view and create departments, roles, and employee profiles, as well as the ability to update an employee's title. The image below illustrates the application's feature menu.
+![Employee Tracker menu](./assets/images/et1.png)
 
-Mock-Up
-The following video shows an example of the application being used from the command line:
+>> - Select **View all departments** to view all departments in the application's department table. The image below illustrates this function.
+![View All Departments](./assets/images/et2.png)
 
-A video thumbnail shows the command-line employee management application with a play button overlaying the view.
+>> - Select **View all roles** to view all roles in the application's role table. The image below illustrates this function.
+![View All Roles](./assets/images/et3.png)
 
-Getting Started
-You’ll need to use the MySQL2 package (Links to an external site.) to connect to your MySQL database and perform queries, the Inquirer package (Links to an external site.) to interact with the user via the command line, and the console.table package (Links to an external site.) to print MySQL rows to the console.
+>> - Select **View all employees** to view all roles in the application's employee table. The image below illustrates this function.
+![View All Employees](./assets/images/et4.png)
 
-Important: You will be committing a file that contains your database credentials. Make sure that your MySQL password is not used for any other personal accounts, because it will be visible on GitHub. In upcoming lessons, you will learn how to better secure this password, or you can start researching npm packages now that could help you.
+>> - Select **Add a department** to add a new department to the application's department table. The image below illustrates this function.
+![Add a Department](./assets/images/et5.png)
 
-You might also want to make your queries asynchronous. MySQL2 exposes a .promise() function on Connections to upgrade an existing non-Promise connection to use Promises. To learn more and make your queries asynchronous, refer to the npm documentation on MySQL2 (Links to an external site.).
+>> - Select **Add a role** to add a new role to the application's role table. Note that each role is unique to a department and therefore you must identify the department for which the role applies. The image below illustrates this function.
+![Add a Role](./assets/images/et6.png)
 
-Design the database schema as shown in the following image:
+>> - Select **Add an employee** to add a new employee to the application's employee table. Note that an employee is assigned to a department and therefore you must identify the department to which the the employee belongs. The image below illustrates this function.
+![Add an Employee](./assets/images/et7.png)
 
-Database schema includes tables labeled “employee,” role,” and “department.”
+>> - Select **Update an employee role** to update an employee's role. Note that an employee is assigned to a department and therefore you must identify the department to which the the employee belongs. The image below illustrates this function.
+![Add an Employee](./assets/images/et8.png)
 
-As the image illustrates, your schema should contain the following three tables:
+## [Tests](#tests)
+No formal testing is available. However, test data is provided in the **db/seeds.sql** file, which can be invoked using the following steps. 
 
-department
+**NOTE: Your testing environment should be different from the production environment described in the [Installation](#installation) section. You can create a test environment following [Installation](#installation) instructions, but you will need to modify the database name in the **db/db.sql** file and the **db/connection.js** file to use your desired test database name.**
 
-id: INT PRIMARY KEY
+>>> 1. Open a terminal application, such as git bash, and type "**mysql -u root -p**". Type in the password of your MYSQL root user;
+>>> 2. Type "**use database YOUR_TEST_DATABASE_NAME;**" and press enter. 
+>>> 3. Type "**source db/db.seeds.sql;**" and press enter to populate the database with sample data for testing purposes;
+>>> 4. Type "**quit;**" and press enter to exit MSQL.
 
-name: VARCHAR(30) to hold department name
+## [Questions](#questions)
+Please email [Brad Kelley](mailto:bradkelleytech@gmail.com) with any project questions.
 
-role
-
-id: INT PRIMARY KEY
-
-title: VARCHAR(30) to hold role title
-
-salary: DECIMAL to hold role salary
-
-department_id: INT to hold reference to department role belongs to
-
-employee
-
-id: INT PRIMARY KEY
-
-first_name: VARCHAR(30) to hold employee first name
-
-last_name: VARCHAR(30) to hold employee last name
-
-role_id: INT to hold reference to employee role
-
-manager_id: INT to hold reference to another employee that is the manager of the current employee (null if the employee has no manager)
-
-You might want to use a separate file that contains functions for performing specific SQL queries you'll need to use. A constructor function or class could be helpful for organizing these. You might also want to include a seeds.sql file to pre-populate your database, making the development of individual features much easier.
-
-Bonus
-Try to add some additional functionality to your application, such as the ability to do the following:
-
-Update employee managers.
-
-View employees by manager.
-
-View employees by department.
-
-Delete departments, roles, and employees.
-
-View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
-
-Grading Requirements
-This Challenge is graded based on the following criteria:
-
-Deliverables: 10%
-Your GitHub repository containing your application code.
-Walkthrough Video: 27%
-A walkthrough video that demonstrates the functionality of the employee tracker must be submitted, and a link to the video should be included in your README file.
-
-The walkthrough video must show all of the technical acceptance criteria being met.
-
-The walkthrough video must demonstrate how a user would invoke the application from the command line.
-
-The walkthrough video must demonstrate a functional menu with the options outlined in the acceptance criteria.
-
-Technical Acceptance Criteria: 40%
-Satisfies all of the preceding acceptance criteria plus the following:
-
-Uses the Inquirer package (Links to an external site.).
-
-Uses the MySQL2 package (Links to an external site.) to connect to a MySQL database.
-
-Uses the console.table package (Links to an external site.) to print MySQL rows to the console.
-
-Follows the table schema outlined in the homework instructions.
-
-Repository Quality: 13%
-Repository has a unique name.
-
-Repository follows best practices for file structure and naming conventions.
-
-Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-Repository contains multiple descriptive commit messages.
-
-Repository contains a high-quality README with description and a link to a walkthrough video.
-
-Application Quality 10%
-The application user experience is intuitive and easy to navigate.
-Bonus
-Fulfilling any of the following can add up to 20 points to your grade. Note that the highest grade you can achieve is still 100:
-
-Application allows users to update employee managers (2 points).
-
-Application allows users to view employees by manager (2 points).
-
-Application allows users to view employees by department (2 points).
-
-Application allows users to delete departments, roles, and employees (2 points for each).
-
-Application allows users to view the total utilized budget of a department—in other words, the combined salaries of all employees in that department (8 points).
-
-How to Submit the Challenge
-You are required to submit BOTH of the following for review:
-
-A walkthrough video demonstrating the functionality of the application.
-
-The URL of the GitHub repository, with a unique name and a README describing the project.
