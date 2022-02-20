@@ -7,7 +7,7 @@ Employee Tracker is an intuitive app that allows you to view and manage departme
 >> - Project Repository URL: https://github.com/bkfleet1/emp-tracker
 ![Employee Tracker repository](./assets/images/repository.png)
 
->> - Walkthrough Video: https://watch.screencastify.com/v/GbEjblAJgbtTLYtwQFI0
+>> - Walkthrough Video: https://drive.google.com/file/d/1GImfXCAZMB36lTb5ZFscPUs56FDXNmBB/view
 
 ## Table of Contents
 > * [Title](#title)

@@ -135,7 +135,7 @@ const init = () => {
             else if (data.menu === `Update an employee role`) {
                 putEmployee();
             }
-            else if (data.menu === `Exit Application`) { return }
+            else if (data.menu === `Exit Application`) { process.exit(1) }
             else return;
         })
         .catch((err) => {
@@ -144,7 +144,7 @@ const init = () => {
 };
 
 const getDepartments = () => {
-    const sql4 = `select * from department order by name asc`;
+    const sql4 = `select id as 'Department ID', name as 'Department' from department`;
     db.query(sql4, (err, res) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -157,7 +157,7 @@ const getDepartments = () => {
 
 
 const getRoles = () => {
-    const sql = `select * from role order by title asc`;
+    const sql = `select role.id as 'Role ID', role.title as 'Title', role.salary as 'Salary', department.name as 'Department' from role left join department on role.department_id = department.id`;
     db.query(sql, (err, res) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -169,7 +169,7 @@ const getRoles = () => {
 };
 
 const getEmployees = () => {
-    const sql = `select * from employee order by first_name asc`;
+    const sql = `select employee.id as 'Employee ID', employee.first_name as 'First Name', employee.last_name as 'Last Name', role.title as 'Title', department.name as 'Department', role.salary as 'Salary', concat (emp.first_name,' ',emp.last_name) as 'Manager Name' from employee left join role on employee.role_id = role.id left join department on role.department_id=department.id left join employee as emp on employee.manager_id = emp.id`;
     db.query(sql, (err, res) => {
         if (err) {
             res.status(500).json({ error: err.message });
