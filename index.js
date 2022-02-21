@@ -184,6 +184,8 @@ const getEmployees = () => {
 const postDepartment = () => {
     inquirer.prompt(newDepartment)
         .then((data) => {
+            let dn = data.name
+            Depts.push(dn)
             const sql = `INSERT INTO department (name) VALUES (?)`;
             db.query(sql, (data.name), (err, res) => {
                 if (err) {
@@ -204,6 +206,7 @@ const postRole = () => {
             let deptName = data.department_name;
             let title = data.title;
             let salary = data.salary;
+            Roles.push(title)
             let sql = `SELECT id as department_id from department where name = '${deptName}'`
             db.query(sql, (err, res) => {
                 if (err) throw err
