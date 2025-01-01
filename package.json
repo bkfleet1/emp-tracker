@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/bkfleet1/emp-tracker#readme",
   "dependencies": {
-    "console.table": "^0.10.0",
-    "inquirer": "^8.2.0",
-    "mysql2": "^2.3.3"
+    "console.table": "*",
+    "inquirer": "*",
+    "mysql2": "*"
   }
 }
